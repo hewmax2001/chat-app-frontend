@@ -2,3 +2,8 @@ body {
     background-image: url('./img/starry.gif');
     margin: 0;
 }
+
+.container {
+    margin: 0px auto;
+    width: 1000px;
+}
