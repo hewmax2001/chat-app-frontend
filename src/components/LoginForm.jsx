@@ -13,7 +13,7 @@ const LoginForm = () => {
     }
 
     return (
-      <div className='container'>
+      <div className='center-wrapper'>
         <form className='login-form' onSubmit={handleLogin}>
           <div>
             <p>Username</p>
