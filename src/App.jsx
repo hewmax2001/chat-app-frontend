@@ -9,7 +9,6 @@ const App = () => {
 
   return (
     <>
-      <LoginForm />
 
       <Routes>
         <Route path="/login" element={<LoginForm />} />
