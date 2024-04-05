@@ -18,4 +18,5 @@ export const loginUser = (username, password) => {
     }
 }
 
+export const { setUser } = userSlice.actions
 export default userSlice.reducer
