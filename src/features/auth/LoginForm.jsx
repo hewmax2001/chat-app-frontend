@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import './login.css'
 import { useDispatch } from 'react-redux'
-import { loginUser } from '../reducers/userReducer'
+import { setCredentials } from './authSlice'
 import { useNavigate } from 'react-router-dom'
+import { useLoginMutation } from './authApiSlice'
 
 const LoginForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  const [login, { isLoading }] = useLoginMutation()
 
   // Replace with textField hook?
   const [username, setUsername] = useState('')
@@ -15,11 +18,14 @@ const LoginForm = () => {
   const handleLogin = async (event) => {
       event.preventDefault()
       try {
-        await dispatch(loginUser(username, password))
+        const userData = await login({ username, password }).unwrap()
+        console.log(userData)
+        await dispatch(setCredentials({ user: userData.username, token: userData.accessToken}))
         setUsername('')
         setPassword('')
         navigate('/')
       } catch(error) {
+        console.log("Error found")
         console.error(`Error occured: ${error}`)
       }
   }
